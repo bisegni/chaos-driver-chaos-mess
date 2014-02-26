@@ -19,7 +19,7 @@ LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/../../chaosframework/usr/local/lib)
 
 ADD_DEFINITIONS(-g -O2 -Wall)
 
-SET(MESS_src source/main.cpp source/MESS.cpp source/DefaultCommand.cpp source/DummyDriver.cpp)
+SET(MESS_src source/main.cpp source/ChaosMESS.cpp source/DefaultCommand.cpp source/DummyDriver.cpp)
 
 ADD_EXECUTABLE(MESS ${MESS_src})
 

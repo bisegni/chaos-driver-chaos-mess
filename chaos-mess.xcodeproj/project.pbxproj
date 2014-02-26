@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9766F17D60F4200F76D3F /* DummyDriver.cpp */; };
 		32C9767717D60F4200F76D3F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767117D60F4200F76D3F /* main.cpp */; };
-		32C9767817D60F4200F76D3F /* MESS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767217D60F4200F76D3F /* MESS.cpp */; };
+		32C9767817D60F4200F76D3F /* ChaosMESS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767217D60F4200F76D3F /* ChaosMESS.cpp */; };
 		32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767417D60F4200F76D3F /* DefaultCommand.cpp */; };
 /* End PBXBuildFile section */
 
@@ -18,11 +18,11 @@
 		32C9766F17D60F4200F76D3F /* DummyDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DummyDriver.cpp; path = source/DummyDriver.cpp; sourceTree = SOURCE_ROOT; };
 		32C9767017D60F4200F76D3F /* DummyDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DummyDriver.h; path = source/DummyDriver.h; sourceTree = SOURCE_ROOT; };
 		32C9767117D60F4200F76D3F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/main.cpp; sourceTree = SOURCE_ROOT; };
-		32C9767217D60F4200F76D3F /* MESS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MESS.cpp; path = source/MESS.cpp; sourceTree = SOURCE_ROOT; };
-		32C9767317D60F4200F76D3F /* MESS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MESS.h; path = source/MESS.h; sourceTree = SOURCE_ROOT; };
+		32C9767217D60F4200F76D3F /* ChaosMESS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ChaosMESS.cpp; path = source/ChaosMESS.cpp; sourceTree = SOURCE_ROOT; };
+		32C9767317D60F4200F76D3F /* ChaosMESS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChaosMESS.h; path = source/ChaosMESS.h; sourceTree = SOURCE_ROOT; };
 		32C9767417D60F4200F76D3F /* DefaultCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultCommand.cpp; path = source/DefaultCommand.cpp; sourceTree = SOURCE_ROOT; };
 		32C9767517D60F4200F76D3F /* DefaultCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultCommand.h; path = source/DefaultCommand.h; sourceTree = SOURCE_ROOT; };
-		32F7448F14B49CCB0025638B /* MESS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MESS; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F7448F14B49CCB0025638B /* chaos-mess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "chaos-mess"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 		326027B914B30A2400C906CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F7448F14B49CCB0025638B /* MESS */,
+				32F7448F14B49CCB0025638B /* chaos-mess */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,8 +59,8 @@
 				32C9766F17D60F4200F76D3F /* DummyDriver.cpp */,
 				32C9767017D60F4200F76D3F /* DummyDriver.h */,
 				32C9767117D60F4200F76D3F /* main.cpp */,
-				32C9767217D60F4200F76D3F /* MESS.cpp */,
-				32C9767317D60F4200F76D3F /* MESS.h */,
+				32C9767217D60F4200F76D3F /* ChaosMESS.cpp */,
+				32C9767317D60F4200F76D3F /* ChaosMESS.h */,
 				32C9767417D60F4200F76D3F /* DefaultCommand.cpp */,
 				32C9767517D60F4200F76D3F /* DefaultCommand.h */,
 			);
@@ -71,9 +71,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		32F7448E14B49CCB0025638B /* MESS */ = {
+		32F7448E14B49CCB0025638B /* chaos-mess */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MESS" */;
+			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "chaos-mess" */;
 			buildPhases = (
 				32F7448B14B49CCB0025638B /* Sources */,
 				32F7448C14B49CCB0025638B /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = MESS;
+			name = "chaos-mess";
 			productName = ControlUnitTest;
-			productReference = 32F7448F14B49CCB0025638B /* MESS */;
+			productReference = 32F7448F14B49CCB0025638B /* chaos-mess */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +96,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = INFN;
 			};
-			buildConfigurationList = 326027A214B309ED00C906CE /* Build configuration list for PBXProject "MESS" */;
+			buildConfigurationList = 326027A214B309ED00C906CE /* Build configuration list for PBXProject "chaos-mess" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				32F7448E14B49CCB0025638B /* MESS */,
+				32F7448E14B49CCB0025638B /* chaos-mess */,
 			);
 		};
 /* End PBXProject section */
@@ -119,7 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C9767717D60F4200F76D3F /* main.cpp in Sources */,
-				32C9767817D60F4200F76D3F /* MESS.cpp in Sources */,
+				32C9767817D60F4200F76D3F /* ChaosMESS.cpp in Sources */,
 				32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */,
 				32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */,
 			);
@@ -153,6 +153,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
 				COPY_PHASE_STRIP = NO;
@@ -190,7 +191,7 @@
 					"-lchaos_cutoolkit",
 					"-lchaos_common",
 				);
-				PRODUCT_NAME = MESS;
+				PRODUCT_NAME = "chaos-mess";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -200,6 +201,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
 				COPY_PHASE_STRIP = YES;
@@ -231,7 +233,7 @@
 					"-lchaos_cutoolkit",
 					"-lchaos_common",
 				);
-				PRODUCT_NAME = MESS;
+				PRODUCT_NAME = "chaos-mess";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -239,7 +241,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		326027A214B309ED00C906CE /* Build configuration list for PBXProject "MESS" */ = {
+		326027A214B309ED00C906CE /* Build configuration list for PBXProject "chaos-mess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				326027A414B309ED00C906CE /* Debug */,
@@ -248,7 +250,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MESS" */ = {
+		32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "chaos-mess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				32F7449714B49CCC0025638B /* Debug */,

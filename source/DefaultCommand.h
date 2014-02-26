@@ -42,9 +42,7 @@ class DefaultCommand : public ccc_slow_command::SlowCommand {
      \return the mask for the runnign state
      */
     void acquireHandler();
-    
-    // Correlation and commit phase
-    void ccHandler();
+
     
 public:
     DefaultCommand();

@@ -1,5 +1,5 @@
 /*
- *	MESS.h
+ *	ChaosMESS.h
  *	!CHOAS
  *	Created by Bisegni Claudio.
  *
@@ -18,8 +18,8 @@
  *    	limitations under the License.
  */
 
-#ifndef __ControlUnitTest__MESS__
-#define __ControlUnitTest__MESS__
+#ifndef __ControlUnitTest__ChaosMESS__
+#define __ControlUnitTest__ChaosMESS__
 
 #include <chaos/cu_toolkit/ControlManager/SCAbstractControlUnit.h>
 
@@ -30,7 +30,7 @@ using namespace boost::posix_time;
 
 namespace cu_driver = chaos::cu::driver_manager::driver;
 
-class MESS : public chaos::cu::SCAbstractControlUnit {
+class ChaosChaosMESS : public chaos::cu::SCAbstractControlUnit {
     string _deviceID;
 protected:
     /*
@@ -59,13 +59,13 @@ public:
     /*
      Construct a new CU with an identifier
      */
-    MESS(string&);
+    ChaosMESS(string&);
 	
 	/*
      Base destructor
      */
-	~MESS();
+	~ChaosMESS();
 };
 
 
-#endif /* defined(__ControlUnitTest__MESS__) */
+#endif /* defined(__ControlUnitTest__ChaosMESS__) */

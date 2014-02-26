@@ -27,19 +27,17 @@ using namespace chaos;
 using namespace chaos::common::data;
 
 using namespace chaos::cu::control_manager::slow_command;
+namespace chaos_batch = chaos::common::batch_command;
 
 DefaultCommand::DefaultCommand() {
-    //set default scheduler delay
-    setFeatures(features::FeaturesFlagTypes::FF_SET_SCHEDULER_DELAY, 1000);
 }
 
 DefaultCommand::~DefaultCommand() {
-    
 }
 
 // return the implemented handler
 uint8_t DefaultCommand::implementedHandler() {
-    return  HandlerType::HT_Set | HandlerType::HT_Acquisition | HandlerType::HT_Correlation;
+    return  chaos_batch::HandlerType::HT_Set | chaos_batch::HandlerType::HT_Acquisition;
 }
 
 // Start the command execution
@@ -54,7 +52,3 @@ void DefaultCommand::setHandler(CDataWrapper *data) {
 void DefaultCommand::acquireHandler() {
 }
 
-// Correlation and commit phase
-void DefaultCommand::ccHandler() {
-    
-}

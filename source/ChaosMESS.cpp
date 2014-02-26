@@ -1,12 +1,12 @@
 //
-//  MESS.cpp
+//  ChaosMESS.cpp
 //  ControlUnitTest
 //
 //  Created by Claudio Bisegni on 7/20/13.
 //  Copyright (c) 2013 INFN. All rights reserved.
 //
 
-#include "MESS.h"
+#include "ChaosMESS.h"
 #include "DefaultCommand.h"
 
 using namespace chaos::common::data;
@@ -18,18 +18,18 @@ using namespace chaos::cu::driver_manager::driver;
 /*
  Construct a new CU with an identifier
  */
-MESS::MESS(string &customDeviceID) {
+ChaosMESS::ChaosMESS(string &customDeviceID) {
     _deviceID = customDeviceID;
 }
 
-MESS::~MESS() {
+ChaosMESS::~ChaosMESS() {
 	
 }
 
 /*
  Return the default configuration
  */
-void MESS::unitDefineActionAndDataset() throw(CException) {
+void ChaosMESS::unitDefineActionAndDataset() throw(CException) {
     //set the base information
     RangeValueInfo rangeInfoTemp;
     //cuSetup.addStringValue(CUDefinitionKey::CS_CM_CU_DESCRIPTION, "This is a beautifull CU");
@@ -41,30 +41,30 @@ void MESS::unitDefineActionAndDataset() throw(CException) {
     installCommand<DefaultCommand>("default_command");
 }
 
-void MESS::defineSharedVariable() {
+void ChaosMESS::defineSharedVariable() {
 }
 
-void MESS::unitDefineDriver(std::vector<cu_driver::DrvRequestInfo>& neededDriver) {
+void ChaosMESS::unitDefineDriver(std::vector<cu_driver::DrvRequestInfo>& neededDriver) {
 	cu_driver::DrvRequestInfo drv1 = {"DummyDriver","1.0.0","url_host:port"};
 	neededDriver.push_back(drv1);
 }
 
 // Abstract method for the initialization of the control unit
-void MESS::unitInit() throw(CException) {
+void ChaosMESS::unitInit() throw(CException) {
 	
 }
 
 // Abstract method for the start of the control unit
-void MESS::unitStart() throw(CException) {
+void ChaosMESS::unitStart() throw(CException) {
 	
 }
 
 // Abstract method for the stop of the control unit
-void MESS::unitStop() throw(CException) {
+void ChaosMESS::unitStop() throw(CException) {
 	
 }
 
 // Abstract method for the deinit of the control unit
-void MESS::unitDeinit() throw(CException) {
+void ChaosMESS::unitDeinit() throw(CException) {
 	
 }

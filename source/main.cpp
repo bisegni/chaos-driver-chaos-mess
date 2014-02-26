@@ -19,7 +19,7 @@
  */
 
 
-#include "MESS.h"
+#include "ChaosMESS.h"
 #include "DummyDriver.h"
 
 #include <chaos/common/chaos_constants.h>
@@ -28,26 +28,8 @@
 #include <iostream>
 #include <string>
 
-/*! \page page_example_cue ChaosCUToolkit Example
- *  \section page_example_cue_sec An basic usage for the ChaosCUToolkit package
- *  
- *  \subsection page_example_cue_sec_sub1 Toolkit usage
- *  ChaosCUToolkit has private constructor so it can be used only using singleton pattern,
- *  the only way to get unique isntance is; ChaosCUToolkit::getInstance(). So the first call of
- *  getInstance method will provide the CUToolkit and Common layer initial setup.
- *  \snippet example/ControlUnitTest/ControlUnitExample.cpp Custom Option
- *
- *  Then it must be initialized, in this method can be passed the main argument
- *  of a c or c++ programm
- *  \snippet example/ControlUnitTest/ControlUnitExample.cpp CUTOOLKIT Init
- *
- *  At this point the custom implementation af a control unit cab be added to framework
- *  \snippet example/ControlUnitTest/ControlUnitExample.cpp Adding the CustomControlUnit
- *
- *  At this step the framework can be started, it will perform all needs, comunicate with
- *  Metadata Server and all chaos workflow will start. The start method call will block the main execution
- *  until the chaos workflow of this isnstance need to be online
- *  \snippet example/ControlUnitTest/ControlUnitExample.cpp Starting the Framework
+/*! 
+ 
  */
 using namespace std;
 using namespace chaos;
@@ -60,32 +42,19 @@ namespace cu_driver_manager = chaos::cu::driver_manager;
 #define OPT_CUSTOM_DEVICE_ID "device_id"
 
 
-int main (int argc, char* argv[] )
-{
+int main (int argc, char* argv[] ) {
     string tmp_device_id;
-    //! [Custom Option]
     try {
     ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_CUSTOM_DEVICE_ID, po::value<string>(), "device id for the");
-    //! [Custom Option]
-    
-	//! [Driver Registration]
 	MATERIALIZE_INSTANCE_AND_INSPECTOR(DummyDriver)
 	cu_driver_manager::DriverManager::getInstance()->registerDriver(DummyDriverInstancer, DummyDriverInspector);
-    //! [Driver Registration]
 		
     ChaosCUToolkit::getInstance()->init(argc, argv);
-    //! [CUTOOLKIT Init]
-    
-    //! [Adding the CustomControlUnit]
     if(ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_CUSTOM_DEVICE_ID)){
         tmp_device_id = ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->getOption<string>(OPT_CUSTOM_DEVICE_ID);
         ChaosCUToolkit::getInstance()->addControlUnit(new MESS(tmp_device_id));
     }
-    //! [Adding the CustomControlUnit]
-    
-    //! [Starting the Framework]
     ChaosCUToolkit::getInstance()->start();
-    //! [Starting the Framework]
     } catch (CException& e) {
         cerr<<"Exception::"<<endl;
         std::cerr<< "in:"<<e.errorDomain << std::endl;
