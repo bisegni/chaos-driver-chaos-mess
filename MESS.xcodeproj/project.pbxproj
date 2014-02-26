@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9766F17D60F4200F76D3F /* DummyDriver.cpp */; };
+		32C9767717D60F4200F76D3F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767117D60F4200F76D3F /* main.cpp */; };
+		32C9767817D60F4200F76D3F /* MESS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767217D60F4200F76D3F /* MESS.cpp */; };
+		32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767417D60F4200F76D3F /* DefaultCommand.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		32BE864A15A0E3C500818C39 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		32C9766F17D60F4200F76D3F /* DummyDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DummyDriver.cpp; path = source/DummyDriver.cpp; sourceTree = SOURCE_ROOT; };
+		32C9767017D60F4200F76D3F /* DummyDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DummyDriver.h; path = source/DummyDriver.h; sourceTree = SOURCE_ROOT; };
+		32C9767117D60F4200F76D3F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = source/main.cpp; sourceTree = SOURCE_ROOT; };
+		32C9767217D60F4200F76D3F /* MESS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MESS.cpp; path = source/MESS.cpp; sourceTree = SOURCE_ROOT; };
+		32C9767317D60F4200F76D3F /* MESS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MESS.h; path = source/MESS.h; sourceTree = SOURCE_ROOT; };
+		32C9767417D60F4200F76D3F /* DefaultCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultCommand.cpp; path = source/DefaultCommand.cpp; sourceTree = SOURCE_ROOT; };
+		32C9767517D60F4200F76D3F /* DefaultCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultCommand.h; path = source/DefaultCommand.h; sourceTree = SOURCE_ROOT; };
+		32F7448F14B49CCB0025638B /* MESS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MESS; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32F7448C14B49CCB0025638B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3260279D14B309ED00C906CE = {
+			isa = PBXGroup;
+			children = (
+				32BE864A15A0E3C500818C39 /* CMakeLists.txt */,
+				326DB50714B3B7890018A8D0 /* MESS */,
+				326027B914B30A2400C906CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		326027B914B30A2400C906CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32F7448F14B49CCB0025638B /* MESS */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		326DB50714B3B7890018A8D0 /* MESS */ = {
+			isa = PBXGroup;
+			children = (
+				32C9766F17D60F4200F76D3F /* DummyDriver.cpp */,
+				32C9767017D60F4200F76D3F /* DummyDriver.h */,
+				32C9767117D60F4200F76D3F /* main.cpp */,
+				32C9767217D60F4200F76D3F /* MESS.cpp */,
+				32C9767317D60F4200F76D3F /* MESS.h */,
+				32C9767417D60F4200F76D3F /* DefaultCommand.cpp */,
+				32C9767517D60F4200F76D3F /* DefaultCommand.h */,
+			);
+			name = MESS;
+			path = ControlUnitTest;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32F7448E14B49CCB0025638B /* MESS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MESS" */;
+			buildPhases = (
+				32F7448B14B49CCB0025638B /* Sources */,
+				32F7448C14B49CCB0025638B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MESS;
+			productName = ControlUnitTest;
+			productReference = 32F7448F14B49CCB0025638B /* MESS */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3260279F14B309ED00C906CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = INFN;
+			};
+			buildConfigurationList = 326027A214B309ED00C906CE /* Build configuration list for PBXProject "MESS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3260279D14B309ED00C906CE;
+			productRefGroup = 326027B914B30A2400C906CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32F7448E14B49CCB0025638B /* MESS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32F7448B14B49CCB0025638B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32C9767717D60F4200F76D3F /* main.cpp in Sources */,
+				32C9767817D60F4200F76D3F /* MESS.cpp in Sources */,
+				32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */,
+				32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		326027A414B309ED00C906CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = BOOST_ALL_DYN_LINK;
+			};
+			name = Debug;
+		};
+		326027A514B309ED00C906CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = BOOST_ALL_DYN_LINK;
+			};
+			name = Release;
+		};
+		32F7449714B49CCC0025638B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../usr/local/include;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../usr/local/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lboost_chrono",
+					"-lmemcached",
+					"-lboost_system",
+					"-lboost_thread",
+					"-lboost_program_options",
+					"-lboost_regex",
+					"-lboost_filesystem",
+					"-lmpio",
+					"-lmsgpack",
+					"-lmsgpack-rpc",
+					"-lboost_log",
+					"-lboost_log_setup",
+					"-lchaos_cutoolkit",
+					"-lchaos_common",
+				);
+				PRODUCT_NAME = MESS;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		32F7449814B49CCC0025638B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../usr/local/include;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../usr/local/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-lboost_chrono",
+					"-lmemcached",
+					"-lboost_system",
+					"-lboost_thread",
+					"-lboost_program_options",
+					"-lboost_regex",
+					"-lboost_filesystem",
+					"-lmpio",
+					"-lmsgpack",
+					"-lmsgpack-rpc",
+					"-lboost_log",
+					"-lboost_log_setup",
+					"-lchaos_cutoolkit",
+					"-lchaos_common",
+				);
+				PRODUCT_NAME = MESS;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		326027A214B309ED00C906CE /* Build configuration list for PBXProject "MESS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				326027A414B309ED00C906CE /* Debug */,
+				326027A514B309ED00C906CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MESS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32F7449714B49CCC0025638B /* Debug */,
+				32F7449814B49CCC0025638B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3260279F14B309ED00C906CE /* Project object */;
+}
