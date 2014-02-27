@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3229252A18BF3B1100BC80BD /* CmdCalcTrxDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */; };
 		32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9766F17D60F4200F76D3F /* DummyDriver.cpp */; };
 		32C9767717D60F4200F76D3F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767117D60F4200F76D3F /* main.cpp */; };
 		32C9767817D60F4200F76D3F /* ChaosMESS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767217D60F4200F76D3F /* ChaosMESS.cpp */; };
@@ -14,6 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CmdCalcTrxDelay.cpp; sourceTree = SOURCE_ROOT; };
+		3229252918BF3B1100BC80BD /* CmdCalcTrxDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdCalcTrxDelay.h; sourceTree = SOURCE_ROOT; };
 		32BE864A15A0E3C500818C39 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		32C9766F17D60F4200F76D3F /* DummyDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DummyDriver.cpp; path = source/DummyDriver.cpp; sourceTree = SOURCE_ROOT; };
 		32C9767017D60F4200F76D3F /* DummyDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DummyDriver.h; path = source/DummyDriver.h; sourceTree = SOURCE_ROOT; };
@@ -63,6 +66,8 @@
 				32C9767317D60F4200F76D3F /* ChaosMESS.h */,
 				32C9767417D60F4200F76D3F /* DefaultCommand.cpp */,
 				32C9767517D60F4200F76D3F /* DefaultCommand.h */,
+				3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */,
+				3229252918BF3B1100BC80BD /* CmdCalcTrxDelay.h */,
 			);
 			name = MESS;
 			path = ControlUnitTest;
@@ -121,6 +126,7 @@
 				32C9767717D60F4200F76D3F /* main.cpp in Sources */,
 				32C9767817D60F4200F76D3F /* ChaosMESS.cpp in Sources */,
 				32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */,
+				3229252A18BF3B1100BC80BD /* CmdCalcTrxDelay.cpp in Sources */,
 				32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

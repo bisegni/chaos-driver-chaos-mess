@@ -29,7 +29,7 @@ using namespace chaos::common::data;
 using namespace chaos::cu::control_manager::slow_command;
 namespace chaos_batch = chaos::common::batch_command;
 
-DefaultCommand::DefaultCommand() {
+DefaultCommand::DefaultCommand():o_lct_delay(NULL) {
 }
 
 DefaultCommand::~DefaultCommand() {
@@ -42,6 +42,8 @@ uint8_t DefaultCommand::implementedHandler() {
 
 // Start the command execution
 void DefaultCommand::setHandler(CDataWrapper *data) {
+	o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
+	*o_lct_delay = 0;
 }
 
 // Aquire the necessary data for the command
@@ -50,5 +52,8 @@ void DefaultCommand::setHandler(CDataWrapper *data) {
  \return the mask for the runnign state
  */
 void DefaultCommand::acquireHandler() {
+	CDataWrapper *acquiredData = getNewDataWrapper();
+	acquiredData->addInt64Value("trx_delay", *o_lct_delay);
+	pushDataSet(acquiredData);
 }
 

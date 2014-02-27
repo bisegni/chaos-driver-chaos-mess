@@ -8,6 +8,10 @@
 
 #include "ChaosMESS.h"
 #include "DefaultCommand.h"
+#include "CmdCalcTrxDelay.h"
+#include <chaos/common/configuration/GlobalConfiguration.h>
+
+#include <boost/format.hpp>
 
 using namespace chaos::common::data;
 
@@ -18,8 +22,8 @@ using namespace chaos::cu::driver_manager::driver;
 /*
  Construct a new CU with an identifier
  */
-ChaosMESS::ChaosMESS(string &customDeviceID) {
-    _deviceID = customDeviceID;
+ChaosMESS::ChaosMESS() {
+    _deviceID = "to find";
 }
 
 ChaosMESS::~ChaosMESS() {
@@ -30,18 +34,29 @@ ChaosMESS::~ChaosMESS() {
  Return the default configuration
  */
 void ChaosMESS::unitDefineActionAndDataset() throw(CException) {
-    //set the base information
-    RangeValueInfo rangeInfoTemp;
-    //cuSetup.addStringValue(CUDefinitionKey::CS_CM_CU_DESCRIPTION, "This is a beautifull CU");
-    
+    //create the mess virtual device identifier
+	_deviceID = boost::str( boost::format("%1%_mess_monitor") % GlobalConfiguration::getInstance()->getLocalServerAddress());
+	
     //add managed device di
     setDeviceID(_deviceID);
     
     //install a command
-    installCommand<DefaultCommand>("default_command");
+    installCommand<DefaultCommand>("DefaultCommand");
+	installCommand<CmdCalcTrxDelay>(CmdCalcTrxDelay_CMD_ALIAS);
+	
+	addAttributeToDataSet("trx_delay",
+                          "Last command transmission delay in microseconds",
+                          DataType::TYPE_INT32,
+                          DataType::Output);
+	
+	setDefaultCommand("DefaultCommand");
 }
 
 void ChaosMESS::defineSharedVariable() {
+	//uint32_t quit = false;
+	//here are defined the custom shared variable
+    //addCustomSharedVariable("quit", 1, chaos::DataType::TYPE_BOOLEAN);
+    //setVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_CUSTOM, "quit", &quit, sizeof(bool));
 }
 
 void ChaosMESS::unitDefineDriver(std::vector<cu_driver::DrvRequestInfo>& neededDriver) {

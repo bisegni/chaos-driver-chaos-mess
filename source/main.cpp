@@ -26,8 +26,12 @@
 #include <chaos/cu_toolkit/ChaosCUToolkit.h>
 
 #include <iostream>
+#include <fstream>
 #include <string>
 
+#include <boost/shared_ptr.hpp>
+#include <boost/interprocess/sync/file_lock.hpp>
+#include <boost/interprocess/sync/scoped_lock.hpp>
 /*! 
  
  */
@@ -39,23 +43,27 @@ namespace common_plugin = chaos::common::plugin;
 namespace common_utility = chaos::common::utility;
 namespace cu_driver_manager = chaos::cu::driver_manager;
 
-#define OPT_CUSTOM_DEVICE_ID "device_id"
-
+#define LOCK_FILE_NAME "/tmp/chaos_mess.lock"
 
 int main (int argc, char* argv[] ) {
-    string tmp_device_id;
     try {
-    ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_CUSTOM_DEVICE_ID, po::value<string>(), "device id for the");
-	MATERIALIZE_INSTANCE_AND_INSPECTOR(DummyDriver)
-	cu_driver_manager::DriverManager::getInstance()->registerDriver(DummyDriverInstancer, DummyDriverInspector);
-		
-    ChaosCUToolkit::getInstance()->init(argc, argv);
-    if(ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_CUSTOM_DEVICE_ID)){
-        tmp_device_id = ChaosCUToolkit::getInstance()->getGlobalConfigurationInstance()->getOption<string>(OPT_CUSTOM_DEVICE_ID);
-        ChaosCUToolkit::getInstance()->addControlUnit(new MESS(tmp_device_id));
-    }
-    ChaosCUToolkit::getInstance()->start();
-    } catch (CException& e) {
+		std::ofstream os;
+		//check if we are the only instance
+		os.open(LOCK_FILE_NAME, std::ios_base::out | std::ios_base::binary | std::ios_base::app);
+		boost::interprocess::file_lock flock(LOCK_FILE_NAME);
+		boost::interprocess::scoped_lock<boost::interprocess::file_lock> e_lock(flock, boost::interprocess::try_to_lock);
+		if(e_lock) {
+			MATERIALIZE_INSTANCE_AND_INSPECTOR(DummyDriver)
+			cu_driver_manager::DriverManager::getInstance()->registerDriver(DummyDriverInstancer, DummyDriverInspector);
+			ChaosCUToolkit::getInstance()->init(argc, argv);
+			ChaosCUToolkit::getInstance()->addControlUnit(new ChaosMESS());
+			ChaosCUToolkit::getInstance()->start();
+		} else {
+			cerr<<"Another instance is already started, only one is permitted"<<endl;
+		}
+    } catch(boost::interprocess::interprocess_exception e) {
+		cerr<<"Another instance is already started, only one is permitted"<<endl;
+	} catch (CException& e) {
         cerr<<"Exception::"<<endl;
         std::cerr<< "in:"<<e.errorDomain << std::endl;
         std::cerr<< "cause:"<<e.errorMessage << std::endl;

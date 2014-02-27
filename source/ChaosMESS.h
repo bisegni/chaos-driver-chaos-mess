@@ -30,7 +30,7 @@ using namespace boost::posix_time;
 
 namespace cu_driver = chaos::cu::driver_manager::driver;
 
-class ChaosChaosMESS : public chaos::cu::SCAbstractControlUnit {
+class ChaosMESS : public chaos::cu::SCAbstractControlUnit {
     string _deviceID;
 protected:
     /*
@@ -59,7 +59,7 @@ public:
     /*
      Construct a new CU with an identifier
      */
-    ChaosMESS(string&);
+    ChaosMESS();
 	
 	/*
      Base destructor
