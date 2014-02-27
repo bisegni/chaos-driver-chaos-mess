@@ -41,11 +41,11 @@ using namespace boost::posix_time;
 using namespace boost::date_time;
 namespace chaos_batch = chaos::common::batch_command;
 
-#define OPT_MESS_ID				"mess_id"
+#define OPT_MESS_DID			"mess_device_id"
 #define OPT_MESS_PHASES_START	"start"
 #define OPT_MESS_PHASES_STOP	"stop"
 #define OPT_MESS_PHASES_INIT	"init"
-#define OPT_MESS_PHASES_DEINIT	"start"
+#define OPT_MESS_PHASES_DEINIT	"deinit"
 #define OPT_MAKE_TRX_TEST		"trx_delay_test"
 #define OPT_GET_TRX_TEST		"get_trx_delay"
 #define OPT_TIMEOUT				"timeout"
@@ -60,7 +60,7 @@ int main (int argc, char* argv[] ) {
 		std::vector<int> opcodes_sequence;
 		CDeviceNetworkAddress deviceNetworkAddress;
 		
-		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<string>(OPT_MESS_ID, "The host of the mess monitor", &mess_device_id);
+		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<string>(OPT_MESS_DID, "The host of the mess monitor", &mess_device_id);
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MESS_PHASES_INIT, "Initialize the monitor");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MESS_PHASES_START, "Start the monitor");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MESS_PHASES_STOP, "Stop the monitor");
@@ -73,7 +73,7 @@ int main (int argc, char* argv[] ) {
 		
 		ChaosUIToolkit::getInstance()->init(argc, argv);
 		
-		if(!ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MESS_ID)) throw CException(1, "invalid device identification string", "check param");
+		if(!ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MESS_DID)) throw CException(1, "invalid device identification string", "check param");
 		if(mess_device_id.size()==0) throw CException(1, "invalid device identification string", "check param");
 		
 		if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MESS_PHASES_INIT)){
@@ -160,7 +160,7 @@ int main (int argc, char* argv[] ) {
 					if(err == ErrorCode::EC_TIMEOUT) throw CException(2, "Time out on connection", "Read last transmisison delay");
 					if(test_delay_result) {
 						uint64_t delay = test_delay_result->getUInt64Value("trx_delay");
-						LAPP_ << "Last transmission delay = " << delay;
+                        std::cout << "Last transmission delay = " << delay << std::endl;
 					}
 					break;
 				}

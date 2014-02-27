@@ -38,7 +38,5 @@ void CmdCalcTrxDelay::setHandler(CDataWrapper *data) {
     boost::posix_time::time_duration duration( time.time_of_day() );
 	
 	uint64_t *o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
-	if(data->hasKey(CmdCalcTrxDelay_TS_PARAM_KEY)) {
-		*o_lct_delay = duration.total_milliseconds() - data->getUInt64Value(CmdCalcTrxDelay_TS_PARAM_KEY);
-	}
+    *o_lct_delay = duration.total_microseconds() - data->getUInt64Value(CmdCalcTrxDelay_TS_PARAM_KEY);
 }

@@ -71,12 +71,11 @@ void ChaosMESS::unitDefineDriver(std::vector<cu_driver::DrvRequestInfo>& neededD
 
 // Abstract method for the initialization of the control unit
 void ChaosMESS::unitInit() throw(CException) {
-	o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
 }
 
 // Abstract method for the start of the control unit
 void ChaosMESS::unitStart() throw(CException) {
-	
+    o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, "trx_delay")->getCurrentValue<uint64_t>();
 }
 
 // Abstract method for the stop of the control unit
@@ -90,7 +89,8 @@ void ChaosMESS::unitDeinit() throw(CException) {
 }
 
 CDataWrapper *ChaosMESS::getLastTrxDelay(CDataWrapper *actionParam, bool& detachParam) {
+    if(!o_lct_delay) throw CException(-1, "o_lct_delay not allocated", __PRETTY_FUNCTION__);
 	CDataWrapper *result =  new CDataWrapper();
-	result->addInt64Value("trs_delay", *o_lct_delay);
+	result->addInt64Value("trx_delay", *o_lct_delay);
 	return result;
 }

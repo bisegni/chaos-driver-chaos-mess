@@ -30,6 +30,7 @@ using namespace chaos::cu::control_manager::slow_command;
 namespace chaos_batch = chaos::common::batch_command;
 
 DefaultCommand::DefaultCommand():o_lct_delay(NULL) {
+    setFeatures(chaos_batch::features::FeaturesFlagTypes::FF_SET_SCHEDULER_DELAY, (uint64_t)1000000);
 }
 
 DefaultCommand::~DefaultCommand() {
