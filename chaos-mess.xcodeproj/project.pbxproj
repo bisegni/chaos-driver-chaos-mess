@@ -8,15 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		3229252A18BF3B1100BC80BD /* CmdCalcTrxDelay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */; };
+		3229253218BF470B00BC80BD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3229253118BF470B00BC80BD /* main.cpp */; };
 		32C9767617D60F4200F76D3F /* DummyDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9766F17D60F4200F76D3F /* DummyDriver.cpp */; };
 		32C9767717D60F4200F76D3F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767117D60F4200F76D3F /* main.cpp */; };
 		32C9767817D60F4200F76D3F /* ChaosMESS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767217D60F4200F76D3F /* ChaosMESS.cpp */; };
 		32C9767917D60F4200F76D3F /* DefaultCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 32C9767417D60F4200F76D3F /* DefaultCommand.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3229252D18BF470B00BC80BD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CmdCalcTrxDelay.cpp; sourceTree = SOURCE_ROOT; };
 		3229252918BF3B1100BC80BD /* CmdCalcTrxDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CmdCalcTrxDelay.h; sourceTree = SOURCE_ROOT; };
+		3229252F18BF470B00BC80BD /* MessClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MessClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		3229253118BF470B00BC80BD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		32BE864A15A0E3C500818C39 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
 		32C9766F17D60F4200F76D3F /* DummyDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DummyDriver.cpp; path = source/DummyDriver.cpp; sourceTree = SOURCE_ROOT; };
 		32C9767017D60F4200F76D3F /* DummyDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DummyDriver.h; path = source/DummyDriver.h; sourceTree = SOURCE_ROOT; };
@@ -29,6 +44,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3229252C18BF470B00BC80BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32F7448C14B49CCB0025638B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,11 +61,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3229253018BF470B00BC80BD /* MessClient */ = {
+			isa = PBXGroup;
+			children = (
+				3229253118BF470B00BC80BD /* main.cpp */,
+			);
+			path = MessClient;
+			sourceTree = "<group>";
+		};
 		3260279D14B309ED00C906CE = {
 			isa = PBXGroup;
 			children = (
 				32BE864A15A0E3C500818C39 /* CMakeLists.txt */,
-				326DB50714B3B7890018A8D0 /* MESS */,
+				326DB50714B3B7890018A8D0 /* MessMonitor */,
+				3229253018BF470B00BC80BD /* MessClient */,
 				326027B914B30A2400C906CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,11 +83,12 @@
 			isa = PBXGroup;
 			children = (
 				32F7448F14B49CCB0025638B /* chaos-mess */,
+				3229252F18BF470B00BC80BD /* MessClient */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		326DB50714B3B7890018A8D0 /* MESS */ = {
+		326DB50714B3B7890018A8D0 /* MessMonitor */ = {
 			isa = PBXGroup;
 			children = (
 				32C9766F17D60F4200F76D3F /* DummyDriver.cpp */,
@@ -69,13 +101,30 @@
 				3229252818BF3B1100BC80BD /* CmdCalcTrxDelay.cpp */,
 				3229252918BF3B1100BC80BD /* CmdCalcTrxDelay.h */,
 			);
-			name = MESS;
+			name = MessMonitor;
 			path = ControlUnitTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3229252E18BF470B00BC80BD /* MessClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3229253718BF470B00BC80BD /* Build configuration list for PBXNativeTarget "MessClient" */;
+			buildPhases = (
+				3229252B18BF470B00BC80BD /* Sources */,
+				3229252C18BF470B00BC80BD /* Frameworks */,
+				3229252D18BF470B00BC80BD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MessClient;
+			productName = MessClient;
+			productReference = 3229252F18BF470B00BC80BD /* MessClient */;
+			productType = "com.apple.product-type.tool";
+		};
 		32F7448E14B49CCB0025638B /* chaos-mess */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "chaos-mess" */;
@@ -114,11 +163,20 @@
 			projectRoot = "";
 			targets = (
 				32F7448E14B49CCB0025638B /* chaos-mess */,
+				3229252E18BF470B00BC80BD /* MessClient */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3229252B18BF470B00BC80BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3229253218BF470B00BC80BD /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32F7448B14B49CCB0025638B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,6 +192,112 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3229253518BF470B00BC80BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../usr/local/include;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../usr/local/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lboost_chrono",
+					"-lmemcached",
+					"-lboost_system",
+					"-lboost_thread",
+					"-lboost_program_options",
+					"-lboost_regex",
+					"-lboost_filesystem",
+					"-lmpio",
+					"-lmsgpack",
+					"-lmsgpack-rpc",
+					"-lboost_log",
+					"-lboost_log_setup",
+					"-lchaos_uitoolkit",
+					"-lchaos_common",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3229253618BF470B00BC80BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../../usr/local/bin";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../usr/local/include;
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../usr/local/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-lboost_chrono",
+					"-lmemcached",
+					"-lboost_system",
+					"-lboost_thread",
+					"-lboost_program_options",
+					"-lboost_regex",
+					"-lboost_filesystem",
+					"-lmpio",
+					"-lmsgpack",
+					"-lmsgpack-rpc",
+					"-lboost_log",
+					"-lboost_log_setup",
+					"-lchaos_uitoolkit",
+					"-lchaos_common",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		326027A414B309ED00C906CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -247,6 +411,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3229253718BF470B00BC80BD /* Build configuration list for PBXNativeTarget "MessClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3229253518BF470B00BC80BD /* Debug */,
+				3229253618BF470B00BC80BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		326027A214B309ED00C906CE /* Build configuration list for PBXProject "chaos-mess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

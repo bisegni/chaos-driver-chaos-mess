@@ -44,6 +44,11 @@ void ChaosMESS::unitDefineActionAndDataset() throw(CException) {
     installCommand<DefaultCommand>("DefaultCommand");
 	installCommand<CmdCalcTrxDelay>(CmdCalcTrxDelay_CMD_ALIAS);
 	
+	addActionDescritionInstance<ChaosMESS>(this,
+										   &ChaosMESS::getLastTrxDelay,
+										   "getLastTrxDelay",
+										   "Return the last transmission delay");
+	
 	addAttributeToDataSet("trx_delay",
                           "Last command transmission delay in microseconds",
                           DataType::TYPE_INT32,
@@ -66,7 +71,7 @@ void ChaosMESS::unitDefineDriver(std::vector<cu_driver::DrvRequestInfo>& neededD
 
 // Abstract method for the initialization of the control unit
 void ChaosMESS::unitInit() throw(CException) {
-	
+	o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
 }
 
 // Abstract method for the start of the control unit
@@ -82,4 +87,10 @@ void ChaosMESS::unitStop() throw(CException) {
 // Abstract method for the deinit of the control unit
 void ChaosMESS::unitDeinit() throw(CException) {
 	
+}
+
+CDataWrapper *ChaosMESS::getLastTrxDelay(CDataWrapper *actionParam, bool& detachParam) {
+	CDataWrapper *result =  new CDataWrapper();
+	result->addInt64Value("trs_delay", *o_lct_delay);
+	return result;
 }

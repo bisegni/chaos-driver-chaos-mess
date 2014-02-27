@@ -21,6 +21,7 @@
 #ifndef __ControlUnitTest__ChaosMESS__
 #define __ControlUnitTest__ChaosMESS__
 
+#include <chaos/common/data/CDataWrapper.h>
 #include <chaos/cu_toolkit/ControlManager/SCAbstractControlUnit.h>
 
 using namespace std;
@@ -32,6 +33,7 @@ namespace cu_driver = chaos::cu::driver_manager::driver;
 
 class ChaosMESS : public chaos::cu::SCAbstractControlUnit {
     string _deviceID;
+	uint64_t *o_lct_delay;
 protected:
     /*
      Define the Control Unit Dataset and Actions
@@ -55,6 +57,11 @@ protected:
      The Control Unit will be deinitialized and disposed
      */
     void unitDeinit() throw(CException);
+	
+	/*!
+	 return last transmision delay appende
+	 */
+	chaos::common::data::CDataWrapper *getLastTrxDelay(chaos::common::data::CDataWrapper *actionParam, bool& detachParam);
 public:
     /*
      Construct a new CU with an identifier
