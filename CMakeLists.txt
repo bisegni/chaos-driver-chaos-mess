@@ -19,7 +19,7 @@ LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/../../usr/local/lib)
 ADD_DEFINITIONS(-g -O2 -Wall)
 
 SET(MessMonitor_src source/main.cpp source/ChaosMESS.cpp source/DefaultCommand.cpp source/DummyDriver.cpp source/CmdCalcTrxDelay.cpp)
-SET(MessClient_src source/main.cpp)
+SET(MessClient_src MessClient/main.cpp)
 
 ADD_EXECUTABLE(MessMonitor ${MessMonitor_src})
 ADD_EXECUTABLE(MessClient ${MessClient_src})

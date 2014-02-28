@@ -35,8 +35,14 @@ namespace cu_driver = chaos::cu::driver_manager::driver;
 //GET_PLUGIN_CLASS_DEFINITION
 //we need only to define the driver because we don't are makeing a plugin
 OPEN_CU_DRIVER_PLUGIN_CLASS_DEFINITION(DummyDriver, 1.0.0, DummyDriver)
-REGISTER_CU_DRIVER_PLUGIN_CLASS_INIT_ATTRIBUTE(Sl7Drv,http_address/dnsname:port)
+REGISTER_CU_DRIVER_PLUGIN_CLASS_INIT_ATTRIBUTE(DmyDrv,http_address/dnsname:port)
 CLOSE_CU_DRIVER_PLUGIN_CLASS_DEFINITION
+
+//register the plugin
+OPEN_REGISTER_PLUGIN
+REGISTER_PLUGIN(DummyDriver)
+CLOSE_REGISTER_PLUGIN
+
 
 //default constructor definition
 DEFAULT_CU_DRIVER_PLUGIN_CONSTRUCTOR(DummyDriver) {
