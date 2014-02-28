@@ -50,6 +50,7 @@ namespace chaos_batch = chaos::common::batch_command;
 #define OPT_MAKE_ROUND_TRIP_TEST	"round_trip_test"
 #define OPT_GET_TRX_TEST			"get_trx_delay"
 #define OPT_TIMEOUT					"timeout"
+#define OPT_SCHED_DELAY				"scheduler_delay"
 
 int main (int argc, char* argv[] ) {
 	try {
@@ -72,7 +73,7 @@ int main (int argc, char* argv[] ) {
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MAKE_ROUND_TRIP_TEST, "Execute the round trip delay test");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_GET_TRX_TEST, "Execute the test of the transmission delay");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<uint32_t>(OPT_TIMEOUT, "Timeout rpc in milliseconds", 2000, &timeout);
-		
+		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<uint64_t>(OPT_SCHED_DELAY, "Scheduler delay", &schedule_delay);
 		
 		
 		ChaosUIToolkit::getInstance()->init(argc, argv);
@@ -86,7 +87,9 @@ int main (int argc, char* argv[] ) {
 		if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MESS_PHASES_START)){
 			opcodes_sequence.push_back(2);
 		}
-		
+        if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_SCHED_DELAY)){
+			opcodes_sequence.push_back(5);
+		}
 		if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MAKE_TRX_TEST)){
 			opcodes_sequence.push_back(6);
 		}
@@ -105,7 +108,11 @@ int main (int argc, char* argv[] ) {
 		if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_MESS_PHASES_DEINIT)){
 			opcodes_sequence.push_back(4);
 		}
-		
+		if(ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->hasOption(OPT_SCHED_DELAY)){
+			opcodes_sequence.push_back(5);
+		}
+        
+        
 		DeviceController *controller = HLDataApi::getInstance()->getControllerForDeviceID(mess_device_id, timeout);
 		if(!controller) throw CException(4, "Error allcoating decive controller", "device controller creation");
 		
@@ -176,6 +183,7 @@ int main (int argc, char* argv[] ) {
 					//send
 					uint64_t cur_ts;
 					uint64_t got_ts;
+                    uint64_t got_delay;
 					std::cout << "start roundtrip test.." << mess_device_id << std::endl;
 					CDataWrapper test_delay_param_data;
 					boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
@@ -197,15 +205,18 @@ int main (int argc, char* argv[] ) {
 					do{
 						controller->fetchCurrentDeviceValue();
 						wrapped_data = controller->getCurrentData();
-						if(wrapped_data)
+						if(wrapped_data) {
 							got_ts = wrapped_data->getUInt64Value("trx_ts");
+                            got_delay = wrapped_data->getUInt64Value("trx_delay");
+                        }
 					}while (got_ts < cur_ts);
-					if(cur_ts == cur_ts) {
+					if(got_ts == cur_ts) {
 						boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
 						boost::posix_time::time_duration duration( time.time_of_day() );
-						std::cout << "Round trip delay is" << std::endl;
+						std::cout << "Command forwarding delay is " <<  got_delay << std::endl;
+                        std::cout << "Round trip delay is " <<  duration.total_microseconds()-cur_ts << std::endl;
 					} else {
-						std::cout << "Data is not from my test" << duration.total_microseconds()-cur_ts << std::endl;
+						std::cout << "Data is not from my test" << std::endl;
 					}
 					break;
 				}

@@ -56,6 +56,7 @@ void DefaultCommand::setHandler(CDataWrapper *data) {
  */
 void DefaultCommand::acquireHandler() {
 	CDataWrapper *acquiredData = getNewDataWrapper();
+    acquiredData->addInt64Value("trx_ts", *o_lct_ts);
 	acquiredData->addInt64Value("trx_delay", *o_lct_delay);
 	pushDataSet(acquiredData);
 }
