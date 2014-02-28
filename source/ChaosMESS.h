@@ -34,6 +34,7 @@ namespace cu_driver = chaos::cu::driver_manager::driver;
 class ChaosMESS : public chaos::cu::SCAbstractControlUnit {
     string _deviceID;
 	uint64_t *o_lct_delay;
+	uint64_t *o_lct_ts;
 protected:
     /*
      Define the Control Unit Dataset and Actions

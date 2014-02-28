@@ -40,7 +40,7 @@
 		32C9767317D60F4200F76D3F /* ChaosMESS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChaosMESS.h; path = source/ChaosMESS.h; sourceTree = SOURCE_ROOT; };
 		32C9767417D60F4200F76D3F /* DefaultCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefaultCommand.cpp; path = source/DefaultCommand.cpp; sourceTree = SOURCE_ROOT; };
 		32C9767517D60F4200F76D3F /* DefaultCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultCommand.h; path = source/DefaultCommand.h; sourceTree = SOURCE_ROOT; };
-		32F7448F14B49CCB0025638B /* chaos-mess */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "chaos-mess"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F7448F14B49CCB0025638B /* MessMonitor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MessMonitor; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 		326027B914B30A2400C906CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F7448F14B49CCB0025638B /* chaos-mess */,
+				32F7448F14B49CCB0025638B /* MessMonitor */,
 				3229252F18BF470B00BC80BD /* MessClient */,
 			);
 			name = Products;
@@ -125,9 +125,9 @@
 			productReference = 3229252F18BF470B00BC80BD /* MessClient */;
 			productType = "com.apple.product-type.tool";
 		};
-		32F7448E14B49CCB0025638B /* chaos-mess */ = {
+		32F7448E14B49CCB0025638B /* MessMonitor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "chaos-mess" */;
+			buildConfigurationList = 32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MessMonitor" */;
 			buildPhases = (
 				32F7448B14B49CCB0025638B /* Sources */,
 				32F7448C14B49CCB0025638B /* Frameworks */,
@@ -136,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = "chaos-mess";
+			name = MessMonitor;
 			productName = ControlUnitTest;
-			productReference = 32F7448F14B49CCB0025638B /* chaos-mess */;
+			productReference = 32F7448F14B49CCB0025638B /* MessMonitor */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +162,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				32F7448E14B49CCB0025638B /* chaos-mess */,
+				32F7448E14B49CCB0025638B /* MessMonitor */,
 				3229252E18BF470B00BC80BD /* MessClient */,
 			);
 		};
@@ -361,7 +361,7 @@
 					"-lchaos_cutoolkit",
 					"-lchaos_common",
 				);
-				PRODUCT_NAME = "chaos-mess";
+				PRODUCT_NAME = MessMonitor;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -403,7 +403,7 @@
 					"-lchaos_cutoolkit",
 					"-lchaos_common",
 				);
-				PRODUCT_NAME = "chaos-mess";
+				PRODUCT_NAME = MessMonitor;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -428,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "chaos-mess" */ = {
+		32F7449614B49CCC0025638B /* Build configuration list for PBXNativeTarget "MessMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				32F7449714B49CCC0025638B /* Debug */,

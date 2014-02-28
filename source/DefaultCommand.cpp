@@ -43,8 +43,10 @@ uint8_t DefaultCommand::implementedHandler() {
 
 // Start the command execution
 void DefaultCommand::setHandler(CDataWrapper *data) {
-	o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
+	o_lct_ts = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)0)->getCurrentValue<uint64_t>();
+	o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, (chaos_batch::VariableIndexType)1)->getCurrentValue<uint64_t>();
 	*o_lct_delay = 0;
+	*o_lct_ts = 0;
 }
 
 // Aquire the necessary data for the command

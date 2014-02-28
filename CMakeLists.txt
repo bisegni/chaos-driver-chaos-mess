@@ -19,14 +19,19 @@ LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/../../chaosframework/usr/local/lib)
 
 ADD_DEFINITIONS(-g -O2 -Wall)
 
-SET(MESS_src source/main.cpp source/ChaosMESS.cpp source/DefaultCommand.cpp source/DummyDriver.cpp)
+SET(MessMonitor_src source/main.cpp source/ChaosMESS.cpp source/DefaultCommand.cpp source/DummyDriver.cpp source/CmdCalcTrxDelay.cpp)
+SET(MessClient_src source/main.cpp)
 
-ADD_EXECUTABLE(MESS ${MESS_src})
+ADD_EXECUTABLE(MessMonitor ${MessMonitor_src})
+ADD_EXECUTABLE(MessClient ${MessClient_src})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	TARGET_LINK_LIBRARIES(MESS pthread chaos_cutoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
+	TARGET_LINK_LIBRARIES(MessMonitor pthread chaos_cutoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
+	TARGET_LINK_LIBRARIES(MessClient pthread chaos_uitoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
 ELSE(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	TARGET_LINK_LIBRARIES(MESS chaos_cutoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
+	TARGET_LINK_LIBRARIES(MessMonitor chaos_cutoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
+	TARGET_LINK_LIBRARIES(MessClient chaos_uitoolkit chaos_common boost_program_options boost_system boost_thread boost_chrono boost_regex boost_log boost_log_setup boost_atomic memcached msgpack msgpack-rpc mpio)
 ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
-INSTALL_TARGETS(/bin MESS)
+INSTALL_TARGETS(/bin MessMonitor)
+INSTALL_TARGETS(/bin MessClient)

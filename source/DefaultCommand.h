@@ -30,6 +30,7 @@ namespace ccc_slow_command = chaos::cu::control_manager::slow_command;
 
 class DefaultCommand : public ccc_slow_command::SlowCommand {
 	uint64_t *o_lct_delay;
+	uint64_t *o_lct_ts;
    protected:
     // return the implemented handler
     uint8_t implementedHandler();

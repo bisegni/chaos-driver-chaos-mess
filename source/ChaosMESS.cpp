@@ -48,7 +48,11 @@ void ChaosMESS::unitDefineActionAndDataset() throw(CException) {
 										   &ChaosMESS::getLastTrxDelay,
 										   "getLastTrxDelay",
 										   "Return the last transmission delay");
-	
+	addAttributeToDataSet("trx_ts",
+                          "Timestamp received form last transmisison delay test",
+                          DataType::TYPE_INT32,
+                          DataType::Output);
+
 	addAttributeToDataSet("trx_delay",
                           "Last command transmission delay in microseconds",
                           DataType::TYPE_INT32,
@@ -75,6 +79,7 @@ void ChaosMESS::unitInit() throw(CException) {
 
 // Abstract method for the start of the control unit
 void ChaosMESS::unitStart() throw(CException) {
+	o_lct_ts = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, "trx_ts")->getCurrentValue<uint64_t>();;
     o_lct_delay = getVariableValue(chaos_batch::IOCAttributeSharedCache::SVD_OUTPUT, "trx_delay")->getCurrentValue<uint64_t>();
 }
 
