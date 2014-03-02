@@ -41,21 +41,23 @@ using namespace boost::posix_time;
 using namespace boost::date_time;
 namespace chaos_batch = chaos::common::batch_command;
 
-#define OPT_MESS_DID				"mess_device_id"
-#define OPT_MESS_PHASES_START		"start"
-#define OPT_MESS_PHASES_STOP		"stop"
-#define OPT_MESS_PHASES_INIT		"init"
-#define OPT_MESS_PHASES_DEINIT		"deinit"
-#define OPT_MAKE_TRX_TEST			"trx_delay_test"
-#define OPT_MAKE_ROUND_TRIP_TEST	"round_trip_test"
-#define OPT_GET_TRX_TEST			"get_trx_delay"
-#define OPT_TIMEOUT					"timeout"
-#define OPT_SCHED_DELAY				"scheduler_delay"
+#define OPT_MESS_DID                        "mess_device_id"
+#define OPT_MESS_PHASES_START               "start"
+#define OPT_MESS_PHASES_STOP                "stop"
+#define OPT_MESS_PHASES_INIT                "init"
+#define OPT_MESS_PHASES_DEINIT              "deinit"
+#define OPT_MAKE_TRX_TEST                   "trx_delay_test"
+#define OPT_MAKE_ROUND_TRIP_TEST            "round_trip_test"
+#define OPT_MAKE_ROUND_TRIP_TEST_ITERATION	"round_trip_test_iteration"
+#define OPT_GET_TRX_TEST                    "get_trx_delay"
+#define OPT_TIMEOUT                         "timeout"
+#define OPT_SCHED_DELAY                     "scheduler_delay"
 
 int main (int argc, char* argv[] ) {
 	try {
 		int err = 0;
 		uint32_t timeout = 0;
+        uint32_t iteration = 0;
 		uint64_t command_id = 0;
 		string mess_device_id;
 		uint64_t schedule_delay = 0;
@@ -71,6 +73,7 @@ int main (int argc, char* argv[] ) {
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MESS_PHASES_DEINIT, "Deinitilize the monitor");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MAKE_TRX_TEST, "Execute the test of the transmission delay");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_MAKE_ROUND_TRIP_TEST, "Execute the round trip delay test");
+        ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<uint32_t>(OPT_MAKE_ROUND_TRIP_TEST_ITERATION, "NUmber of iteration of the roundtrip test", 1, &iteration);
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption(OPT_GET_TRX_TEST, "Execute the test of the transmission delay");
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<uint32_t>(OPT_TIMEOUT, "Timeout rpc in milliseconds", 2000, &timeout);
 		ChaosUIToolkit::getInstance()->getGlobalConfigurationInstance()->addOption<uint64_t>(OPT_SCHED_DELAY, "Scheduler delay", &schedule_delay);
@@ -184,40 +187,64 @@ int main (int argc, char* argv[] ) {
 					uint64_t cur_ts;
 					uint64_t got_ts;
                     uint64_t got_delay;
+                    uint64_t calc_rt_delay;
+                    uint64_t got_min_set_delay;
+                    uint64_t got_max_set_delay;
+                    uint64_t got_min_rt_delay;
+                    uint64_t got_max_rt_delay;
 					std::cout << "start roundtrip test.." << mess_device_id << std::endl;
-					CDataWrapper test_delay_param_data;
-					boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
-					boost::posix_time::time_duration duration( time.time_of_day() );
-					
-					test_delay_param_data.addInt64Value("sts", cur_ts = duration.total_microseconds());
-					err = controller->submitSlowControlCommand("trx_delay",
-															   chaos_batch::SubmissionRuleType::SUBMIT_AND_Stack,
-															   100,
-															   command_id,
-															   0,
-															   0,
-															   0,
-															   &test_delay_param_data);
-					
-					//read answer
-					if(err == ErrorCode::EC_TIMEOUT) throw CException(2, "Time out on connection", "Test transmission delay");
-					std::cout << "Fetch data from data proxy" << std::endl;
-					do{
-						controller->fetchCurrentDeviceValue();
-						wrapped_data = controller->getCurrentData();
-						if(wrapped_data) {
-							got_ts = wrapped_data->getUInt64Value("trx_ts");
-                            got_delay = wrapped_data->getUInt64Value("trx_delay");
+                    for(int idx = 0; idx < iteration; idx++) {
+                        CDataWrapper test_delay_param_data;
+                        boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
+                        boost::posix_time::time_duration duration( time.time_of_day() );
+                        
+                        test_delay_param_data.addInt64Value("sts", cur_ts = duration.total_microseconds());
+                        err = controller->submitSlowControlCommand("trx_delay",
+                                                                   chaos_batch::SubmissionRuleType::SUBMIT_AND_Stack,
+                                                                   100,
+                                                                   command_id,
+                                                                   0,
+                                                                   0,
+                                                                   0,
+                                                                   &test_delay_param_data);
+                        
+                        //read answer
+                        if(err == ErrorCode::EC_TIMEOUT) throw CException(2, "Time out on connection", "Test transmission delay");
+                        do{
+                            controller->fetchCurrentDeviceValue();
+                            wrapped_data = controller->getCurrentData();
+                            if(wrapped_data) {
+                                got_ts = wrapped_data->getUInt64Value("trx_ts");
+                                got_delay = wrapped_data->getUInt64Value("trx_delay");
+                            }
+                        }while (got_ts < cur_ts);
+                        
+                        if(got_ts == cur_ts) {
+                            boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
+                            boost::posix_time::time_duration duration( time.time_of_day() );
+                            calc_rt_delay = duration.total_microseconds()-cur_ts;
+                            if(!idx) {
+                                got_max_rt_delay = calc_rt_delay;
+                                got_min_rt_delay = calc_rt_delay;
+                                
+                                got_max_set_delay = got_delay;
+                                got_min_set_delay = got_delay;
+                            } else {
+                                got_max_rt_delay = std::max(got_max_rt_delay, calc_rt_delay);
+                                got_min_rt_delay = std::min(got_min_rt_delay, calc_rt_delay);
+                                
+                                got_max_set_delay = std::max(got_max_set_delay, got_delay);
+                                got_min_set_delay = std::min(got_min_set_delay, got_delay);
+                            }
+                            
+                            
                         }
-					}while (got_ts < cur_ts);
-					if(got_ts == cur_ts) {
-						boost::posix_time::ptime time = boost::posix_time::microsec_clock::local_time();
-						boost::posix_time::time_duration duration( time.time_of_day() );
-						std::cout << "Command forwarding delay is " <<  got_delay << std::endl;
-                        std::cout << "Round trip delay is " <<  duration.total_microseconds()-cur_ts << std::endl;
-					} else {
-						std::cout << "Data is not from my test" << std::endl;
-					}
+                    }
+					std::cout << "Round trip test result for " <<  iteration << "Iteration" << std::endl;
+                    std::cout << "Minimum rt delay->" <<  got_min_rt_delay << std::endl;
+                    std::cout << "Maximum rt delay->" <<  got_max_rt_delay << std::endl;
+                    std::cout << "Minimum set delay->" <<  got_min_set_delay << std::endl;
+                    std::cout << "Maximum set delay->" <<  got_max_set_delay << std::endl;
 					break;
 				}
 			}
