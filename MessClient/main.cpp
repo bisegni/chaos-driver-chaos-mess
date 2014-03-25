@@ -210,6 +210,8 @@ int main (int argc, char* argv[] ) {
                         
                         //read answer
                         if(err == ErrorCode::EC_TIMEOUT) throw CException(2, "Time out on connection", "Test transmission delay");
+						//set scehdule delay to 500 micro seconds
+						controller->setScheduleDelay(500);
                         do{
                             controller->fetchCurrentDeviceValue();
                             wrapped_data = controller->getCurrentData();
